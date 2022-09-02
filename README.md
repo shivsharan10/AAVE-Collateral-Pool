@@ -1,5 +1,7 @@
 # AAVE-Collateral-Pool
 
+<img src="aave poster 2.png" alt="drawing" width="600" height="400"/>
+
 A smart contract based collateral pool. If several friends decide to pool their funds together and any of them want to borrow ERC20 assets. 
 The other team members will earn interest on their collateral while also allowing borrowing against it.
 
@@ -13,8 +15,8 @@ This DAI will serve as the collateral for any member who wishes to borrow agains
 After all debts have been paid, members will be able to retrieve their initial deposit plus any interest earned.
 
 Collect $DAI
-A. The constructor accepts an array of member addresses as its only parameter. First things first, store this parameter in the members storage variable.
-B. For each member in this array, transfer the required depositAmount from their address to the CollateralGroup smart contract.
+A. The constructor accepts an array of member addresses as its only parameter. First things first, store this parameter in the members storage variable. <br/>
+B. For each member in this array, transfer the required depositAmount from their address to the CollateralGroup smart contract. <br/>
 
 ## 2. Depositing Collateral
 
@@ -22,8 +24,8 @@ Now that all the members have paid their DAI deposit, we can deposit it all into
 This will allow us to start earning interest on the DAI and also allow it to serve as collateral for future borrows.
 
 ### Approve & Deposit
-A. In the constructor, deposit all the collected DAI into the pool contract.
-B. To do this, you will first need to approve the pool to spend our DAI.
+A. In the constructor, deposit all the collected DAI into the pool contract.<br/>
+B. To do this, you will first need to approve the pool to spend our DAI.<br/>
 C. Then, deposit the DAI into the pool contract. Deposit it on behalf of the collateral group contract and you can set the referral code to 0 or any valid code you'd like.
 
 ## 3. Withdraw
@@ -34,16 +36,16 @@ The CollateralGroup contract will be holding AAVE interest bearing DAI, or aDai,
 To figure out the share for each member, we can simply divide the total aDai balance by the number of members.
 
 ### Withdraw From Pool
-A. In the withdraw function, withdraw the entire balance of aDai from the pool, distributing the appropriate share to each member who joined the collateral group.
-B. Before you can call withdraw on the pool you will need to approve the aDai to be spent by the pool.
+A. In the withdraw function, withdraw the entire balance of aDai from the pool, distributing the appropriate share to each member who joined the collateral group.<br/>
+B. Before you can call withdraw on the pool you will need to approve the aDai to be spent by the pool.<br/>
 
 ## 4. Borrowing ERC20s
 
 After the members have transferred their DAI to the smart contract, let's allow any member to borrow against it. Let's support any ERC20 token that has reserves in the AAVE system.
 
-A. In the CollateralGroup borrow function, call borrow on the AAVE pool to borrow the amount of asset specified by the arguments. Be sure to set the onBehalfOf to the collateral group contract, this way the debt is incurred to the smart contract which holds the collateral. 
-B. You can set the referral code as you wish and the interestRateMode should either be 1 for stable or 2 for variable rates.
-C. Once you have borrowed the asset, you will need to transfer the ERC20 to the function caller so they can use it. You can use the IERC20 interface to call the asset ERC20 contract in order to make this transfer.
+A. In the CollateralGroup borrow function, call borrow on the AAVE pool to borrow the amount of asset specified by the arguments. Be sure to set the onBehalfOf to the collateral group contract, this way the debt is incurred to the smart contract which holds the collateral. <br/>
+B. You can set the referral code as you wish and the interestRateMode should either be 1 for stable or 2 for variable rates.<br/>
+C. Once you have borrowed the asset, you will need to transfer the ERC20 to the function caller so they can use it. You can use the IERC20 interface to call the asset ERC20 contract in order to make this transfer.<br/>
 
 ## 5. Repay Loan
 
@@ -52,9 +54,9 @@ When a member is ready to repay their loan, they need to call the repay function
 ### Transfer and Repay
 In the repay function you can repay the loan in three steps:
 
-A. First, transfer the asset from the member to the smart contract.
-B. Next, approve the dai to be spent by the pool.
-C. In the repay function you can repay the loan in three steps:
+A. First, transfer the asset from the member to the smart contract.<br/>
+B. Next, approve the dai to be spent by the pool.<br/>
+C. In the repay function you can repay the loan in three steps:<br/>
 
 
 Finally, repay the pool on behalf of the collateral group. You will need to choose the same interest rate mode as you did in the borrow function.
